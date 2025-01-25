@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cniimxu84ftd2"]
+
+[ext_resource type="Script" path="res://Scripts/obstacle_01.gd" id="1_udxru"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y55q0"]
+size = Vector3(1, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmp6i"]
+albedo_color = Color(0.276054, 0.254334, 0.910129, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tjsgn"]
+material = SubResource("StandardMaterial3D_pmp6i")
+size = Vector3(1, 0.5, 0.5)
+
+[node name="Obstacle01" type="CharacterBody3D"]
+script = ExtResource("1_udxru")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_y55q0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_tjsgn")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-0.552328, -0.307855, -0.31691, 1.10466, 0.61571, 0.633819)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
