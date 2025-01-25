@@ -1,5 +1,6 @@
 extends Node
 
+@export var obstacle_scene: PackedScene #= preload("res://Scenes/ObstacleManager.tscn")
 var timer = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -17,5 +18,10 @@ func _process(delta: float):
 
 func get_timer():
 	timer = $GameTimer.time_left
-func _on_game_timer_timeout() :
+func _on_game_timer_timeout():
 	print("GameOver")
+
+func _on_obstacle_timer_timeout():
+	var obstacle = obstacle_scene.instantiate()
+	obstacle.initialize($Player.position)
+	add_child(obstacle)

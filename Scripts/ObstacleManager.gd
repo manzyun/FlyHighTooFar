@@ -10,7 +10,7 @@ var obstacle_type: int
 const WIDTH_MIN: int = -2
 const WIDTH_MAX: int = 2
 #初期位置
-@export var start_positions: Array[Vector3] = [Vector3(-10,10,0),Vector3(10,10,0)]
+@export var start_positions: Array[Vector3] = [Vector3(-3,10,0),Vector3(3,10,0)]
 
 var direction: Vector3 = Vector3.ZERO
 
@@ -19,25 +19,31 @@ var flip_count: int = 0
 #切り返しの最大数。obstacleのタイプによって変動
 var max_flip_count = 0
 @export var speed = 10
+var obstacle
+var is_enterd: bool = false
+func set_enterd():
+	is_enterd = true
 
-func initialized(player_pos: Vector3):
+func initialize(player_pos: Vector3):
 	#生成するobstacleを乱数で指定
 	#randi()が0からintの最大値までを返すので、3で割った余剰を渡す
-	obstacle_type = randi()%3
+	obstacle_type = 1# randi()%3
 	var obstacle_scene = obstacle_scenes[obstacle_type]
-	var obstacle = obstacle_scene.instantiate()
+	obstacle = obstacle_scene.instantiate()
 	#左右どちらに生成するか指定
 	#0が左、1が右	
 	var start_pos = start_positions[randi()%2]
-	var height_dist = 4
+	var height_dist = 1
 	#生成位置をPlayerの少し上に指定。後で乱数にする
 	start_pos.y = player_pos.y + height_dist
-	obstacle.position = start_pos
+	self.position = start_pos
+	obstacle.position = self.position
+	add_child(obstacle)
 	
-func _init():
-	initialized(Vector3(0, 5, 0))
-#Obstacleの移動
-func move(dir: Vector3, obstacle_type: int):
+func _process(delta: float):
+	#var isenterd = obstacle.get_enterd()
+	#obstacle._on_visible_on_screen_notifier_3d_screen_entered.connect(set_enterd())
+	#print(isenterd)
 	match obstacle_type:
 		BIRD:
 			max_flip_count = 0
@@ -47,12 +53,14 @@ func move(dir: Vector3, obstacle_type: int):
 			max_flip_count = 0
 		_:
 			print("error")
+	print("maxflipcount: %s" %max_flip_count) 
+	print("flipcount: %s" %flip_count	)
 	if flip_count <= max_flip_count:
 		if self.position.x < WIDTH_MIN:
-					dir.x = speed
+			direction.x = speed
+			flip_count += 1
 		if self.position.x > WIDTH_MAX:
-			dir.x = -speed
-	global_translate(dir)
-	
-func _physics_process(delta: float) :
-	move(direction * delta, obstacle_type)
+			direction.x = -speed
+			flip_count += 1
+	global_translate(direction * delta)
+	#print(self.position)
