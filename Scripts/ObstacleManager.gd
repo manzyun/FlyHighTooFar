@@ -7,6 +7,9 @@ const UFO: int = 1
 const ASTEROID: int = 2
 var obstacle_type: int
 
+# プレイヤーのキャラクター操作ができるかを確認する個所
+var is_started: bool = false
+
 const WIDTH_MIN: int = -2
 const WIDTH_MAX: int = 2
 #初期位置
@@ -21,8 +24,13 @@ var max_flip_count = 0
 @export var speed = 10
 var obstacle
 var is_enterd: bool = false
+
 func set_enterd():
 	is_enterd = true
+
+#poc
+func change_enterd(change_is_enterd: bool):
+	is_enterd = change_is_enterd
 
 func initialize(player_pos: Vector3):
 	#生成するobstacleを乱数で指定
@@ -55,6 +63,9 @@ func _process(delta: float):
 			print("error")
 	print("maxflipcount: %s" %max_flip_count) 
 	print("flipcount: %s" %flip_count	)
+	#title scene check logic.
+	if !is_started:
+		return
 	if flip_count <= max_flip_count:
 		if self.position.x < WIDTH_MIN:
 			direction.x = speed
