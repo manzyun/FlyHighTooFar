@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://clxlfsoj6nua6"]
+
+[ext_resource type="Script" path="res://Scripts/obstacle_01.gd" id="1_6t2km"]
+[ext_resource type="PackedScene" uid="uid://daf238rhdxn8" path="res://Models/Asteroid.fbx" id="2_x3bme"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ptxgb"]
+radius = 0.977419
+
+[node name="Obstacle03" type="CharacterBody3D"]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_6t2km")
+
+[node name="Asteroid" parent="." instance=ExtResource("2_x3bme")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ptxgb")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
