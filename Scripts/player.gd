@@ -15,14 +15,10 @@ func set_crushed(state: bool):
 func _physics_process(delta: float):
 	if not is_crushed and direction.y < MAX_UP_IMPULSE:
 		if Input.is_action_just_pressed("click"):
-			#＝＝＝＝＝＝＝＝＝＝＝＝＝
-			#ここにクリックされたときの音
-			
-			#＝＝＝＝＝＝＝＝＝＝＝＝＝
+			$"../fly".play()
 			print("clicked")
 			#directionのyが一定以上になったらシャボン玉を割りたい
 			direction.y += up_impulse
-		
 	if not is_on_floor() and direction.y > -2:
 		direction.y -= gravity * delta
 	velocity = direction
