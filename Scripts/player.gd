@@ -22,7 +22,7 @@ func _physics_process(delta: float):
 			print("clicked")
 			#directionのyが一定以上になったらシャボン玉を割りたい
 			direction.y += up_impulse
-	if is_crushed and restrain_count == 0:
+	if is_crushed and restrain_count == 0:	
 		direction.y = 2
 		restrain_count += 1
 		print("restrain")

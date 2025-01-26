@@ -24,6 +24,11 @@ GameManager="*res://Scenes/Singletons/GamaManager.gd"
 window/size/viewport_width=360
 window/size/viewport_height=640
 window/stretch/mode="viewport"
+window/layer_5="obstacle"
+window/layer_1="ground"
+window/layer_4="cloud"
+window/layer_3="bubble"
+window/layer_2="player"
 
 [input]
 
