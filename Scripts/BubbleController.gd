@@ -11,9 +11,6 @@ func get_visible():
 
 func _on_obstacle_detector_body_entered(body: Node3D):
 	self.visible = false
-	#==============
-	#ここにシャボン玉が割れた時の音
-	
-	#==============
+	$"../crash".play()
 	
 	print("collision")

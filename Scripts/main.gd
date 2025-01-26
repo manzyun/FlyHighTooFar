@@ -21,7 +21,6 @@ func _process(delta: float):
 	
 	if not $Bubble.get_visible():
 		is_crush_timer_started = true
-		$crash.play()
 		$Player.set_crushed(true)
 		$Cloud.visible_set(true)
 	if is_crush_timer_started:
