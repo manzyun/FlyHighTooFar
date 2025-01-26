@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgmovk00cwsur"]
+[gd_scene load_steps=11 format=3 uid="uid://dgmovk00cwsur"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_6dm0k"]
 [ext_resource type="PackedScene" uid="uid://u3k3tnx2jndk" path="res://Scenes/player.tscn" id="1_fhpx2"]
 [ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="2_kwqp2"]
 [ext_resource type="PackedScene" uid="uid://dv1xyubis25gg" path="res://Scenes/ObstacleManager.tscn" id="2_r5xnl"]
 [ext_resource type="PackedScene" uid="uid://n5nqgrvp0nyv" path="res://Scenes/bubble.tscn" id="2_vhebx"]
+[ext_resource type="PackedScene" uid="uid://b7c4poha88dnu" path="res://Scenes/cloud.tscn" id="5_q25xh"]
 [ext_resource type="Script" path="res://Scripts/Game_Timer.gd" id="6_b3642"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hoxd8"]
@@ -21,6 +22,11 @@ size = Vector3(60, 2, 30)
 script = ExtResource("1_6dm0k")
 obstacle_scene = ExtResource("2_r5xnl")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.717052, -0.637142, -0.282642, -0.366712, -2.97373e-08, 0.930334, -0.592755, 0.770747, -0.233648, 20.1037, 31.3489, -14.3529)
+light_energy = 3.0
+shadow_enabled = true
+
 [node name="Ground" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
@@ -29,18 +35,16 @@ shape = SubResource("BoxShape3D_hoxd8")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_4i163")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 41.7439, 0)
-shadow_enabled = true
-
 [node name="Player" parent="." instance=ExtResource("1_fhpx2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Bubble" parent="." instance=ExtResource("2_vhebx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
+[node name="Cloud" parent="." instance=ExtResource("5_q25xh")]
+
 [node name="CameraPivot" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -10)
 script = ExtResource("2_kwqp2")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
@@ -60,14 +64,14 @@ grow_vertical = 2
 
 [node name="LabelGameTimer" type="Label" parent="Control"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 106.0
+offset_bottom = 35.0
 theme_override_font_sizes/font_size = 25
 text = "残り時間: "
 script = ExtResource("6_b3642")
 
 [node name="ObstacleTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.5
 autostart = true
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7c4poha88dnu"]
+
+[ext_resource type="Script" path="res://Scripts/cloud.gd" id="1_a1quj"]
+[ext_resource type="PackedScene" uid="uid://i58v8ao1x58s" path="res://Models/Cloud.fbx" id="1_aq68r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c8yh8"]
+size = Vector3(2.08203, 0.370926, 0.989166)
+
+[node name="Cloud" type="StaticBody3D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_a1quj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0273438, -0.0299759, -0.072403)
+shape = SubResource("BoxShape3D_c8yh8")
+
+[node name="Cloud" parent="." instance=ExtResource("1_aq68r")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.948298, 0.0471392, 0)

@@ -12,7 +12,10 @@ albedo_color = Color(0.276054, 0.254334, 0.910129, 1)
 material = SubResource("StandardMaterial3D_pmp6i")
 size = Vector3(1, 0.5, 0.5)
 
-[node name="Obstacle01" type="CharacterBody3D"]
+[node name="Obstacle01" type="CharacterBody3D" groups=["obstacle"]]
+collision_layer = 16
+collision_mask = 4
+motion_mode = 1
 script = ExtResource("1_udxru")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

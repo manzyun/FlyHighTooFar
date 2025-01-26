@@ -18,49 +18,58 @@ var direction: Vector3 = Vector3.ZERO
 var flip_count: int = 0
 #切り返しの最大数。obstacleのタイプによって変動
 var max_flip_count = 0
-@export var speed = 10
+@export var speed = 4
 var obstacle
 var is_enterd: bool = false
-func set_enterd():
-	is_enterd = true
 
+#生成直後の処理
 func initialize(player_pos: Vector3):
 	#生成するobstacleを乱数で指定
 	#randi()が0からintの最大値までを返すので、3で割った余剰を渡す
-	obstacle_type = 1# randi()%3
+	obstacle_type = randi()%3
 	var obstacle_scene = obstacle_scenes[obstacle_type]
 	obstacle = obstacle_scene.instantiate()
 	#左右どちらに生成するか指定
 	#0が左、1が右	
 	var start_pos = start_positions[randi()%2]
-	var height_dist = 1
+	var height_dist = 0
 	#生成位置をPlayerの少し上に指定。後で乱数にする
 	start_pos.y = player_pos.y + height_dist
+	print("plyrpos %s" %player_pos.y)
+	print("initpos %s" %start_pos.y)
 	self.position = start_pos
+	#初期位置をみて移動方向を指定
+	if start_pos.x > WIDTH_MAX:
+		direction.x = -speed
+	else:
+		direction.x = speed
+		
 	obstacle.position = self.position
 	add_child(obstacle)
 	
 func _process(delta: float):
-	#var isenterd = obstacle.get_enterd()
-	#obstacle._on_visible_on_screen_notifier_3d_screen_entered.connect(set_enterd())
-	#print(isenterd)
+	
 	match obstacle_type:
 		BIRD:
 			max_flip_count = 0
 		UFO:
-			max_flip_count = 4
+			max_flip_count = 3
 		ASTEROID:
 			max_flip_count = 0
 		_:
 			print("error")
-	print("maxflipcount: %s" %max_flip_count) 
-	print("flipcount: %s" %flip_count	)
-	if flip_count <= max_flip_count:
+	if self.position.x <= WIDTH_MAX and self.position.x >= WIDTH_MIN:
+		is_enterd = true
+	if flip_count <= max_flip_count and is_enterd:
 		if self.position.x < WIDTH_MIN:
 			direction.x = speed
+			print("left")
+			print(self.position)
 			flip_count += 1
 		if self.position.x > WIDTH_MAX:
 			direction.x = -speed
+			print("right")
+			print(self.position)
 			flip_count += 1
 	global_translate(direction * delta)
 	#print(self.position)
