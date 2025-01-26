@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://darjmgw7mq487"]
+
+[ext_resource type="Script" path="res://Scripts/obstacle_01.gd" id="1_8b7vr"]
+[ext_resource type="PackedScene" uid="uid://c38o4e4imppsr" path="res://Models/UFO_lowpoly.fbx" id="1_l2o85"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hkj2p"]
+size = Vector3(1, 0.589355, 1)
+
+[node name="Obstacle02" type="CharacterBody3D"]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_8b7vr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0654297, 0)
+shape = SubResource("BoxShape3D_hkj2p")
+
+[node name="Vipot" type="Node3D" parent="."]
+
+[node name="UFO_lowpoly" parent="Vipot" instance=ExtResource("1_l2o85")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.149054, 0)
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-0.519872, -0.356276, -1, 1.03974, 0.712552, 2)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

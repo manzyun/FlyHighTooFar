@@ -30,6 +30,7 @@ func _process(delta: float):
 			is_crush_timer_started = false
 			crush_timer = CRUSH_TIMER
 			$Player.set_crushed(false)
+			$Player.reset_restrain_count()
 			$Bubble.visible_set()
 			$Cloud.visible_set(false)
 			
@@ -40,6 +41,7 @@ func get_timer():
 	timer = $GameTimer.time_left
 func _on_game_timer_timeout():
 	print("GameOver")
+	GameManager.load_result_scene()
 
 func _on_obstacle_timer_timeout():
 	var obstacle = obstacle_scene.instantiate()

@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1r6q4tlbrih3"]
+
+[ext_resource type="Script" path="res://Scripts/title.gd" id="1_a6407"]
+
+[node name="Title" type="Node"]
+script = ExtResource("1_a6407")
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.730069, 0.806203, 1, 1)
+
+[node name="Label" type="Label" parent="UserInterface/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = 69.0
+offset_right = 92.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.790595, 0.360629, 0.967105, 1)
+theme_override_font_sizes/font_size = 25
+text = "Click to Start！"
+
+[node name="Label" type="Label" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.136623, 0.372036, 0.999998, 1)
+theme_override_colors/font_shadow_color = Color(0.325425, 0.11774, 0.702585, 1)
+theme_override_font_sizes/font_size = 40
+text = "Fly High Too Far"
