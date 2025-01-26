@@ -35,3 +35,4 @@ func _physics_process(delta: float):
 		
 	velocity = direction
 	move_and_slide()
+	GameManager.set_score(position.y)

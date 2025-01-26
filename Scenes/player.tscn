@@ -1,16 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://u3k3tnx2jndk"]
+[gd_scene load_steps=4 format=3 uid="uid://u3k3tnx2jndk"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_u0bsw"]
+[ext_resource type="Texture2D" uid="uid://bsfk3enbpy1cf" path="res://Models/chara.png" id="2_gug38"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5iesn"]
 size = Vector3(0.5, 1, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ayfhs"]
-albedo_color = Color(0.885903, 0, 0.179676, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_cuuq3"]
-material = SubResource("StandardMaterial3D_ayfhs")
-size = Vector3(0.5, 1, 0.01)
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 9
@@ -20,4 +14,7 @@ script = ExtResource("1_u0bsw")
 shape = SubResource("BoxShape3D_5iesn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_cuuq3")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+texture = ExtResource("2_gug38")

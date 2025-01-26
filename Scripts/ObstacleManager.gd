@@ -7,10 +7,10 @@ const UFO: int = 1
 const ASTEROID: int = 2
 var obstacle_type: int
 
-const WIDTH_MIN: int = -2
-const WIDTH_MAX: int = 2
+const WIDTH_MIN: int = -3
+const WIDTH_MAX: int = 3
 #初期位置
-@export var start_positions: Array[Vector3] = [Vector3(-3,0,0),Vector3(3,0,0)]
+@export var start_positions: Array[Vector3] = [Vector3(-5,0,0),Vector3(5,0,0)]
 
 var direction: Vector3 = Vector3.ZERO
 
@@ -18,7 +18,7 @@ var direction: Vector3 = Vector3.ZERO
 var flip_count: int = 0
 #切り返しの最大数。obstacleのタイプによって変動
 var max_flip_count = 0
-@export var speed = 4
+@export var speed = 2
 var obstacle
 var is_enterd: bool = false
 
@@ -30,10 +30,13 @@ func initialize(player_pos: Vector3):
 	var obstacle_scene = obstacle_scenes[obstacle_type]
 	match obstacle_type:
 		BIRD:
+			speed += BIRD
 			max_flip_count = 0
 		UFO:
+			speed += UFO
 			max_flip_count = 3
 		ASTEROID:
+			speed += ASTEROID
 			max_flip_count = 0
 		_:
 			print("error")
@@ -41,7 +44,7 @@ func initialize(player_pos: Vector3):
 	#左右どちらに生成するか指定
 	#0が左、1が右	
 	var start_pos = start_positions[randi()%2]
-	var height_dist = 4
+	var height_dist = randi()%3 + 6
 	#生成位置をPlayerの少し上に指定。後で乱数にする
 	start_pos.y = player_pos.y + height_dist
 	

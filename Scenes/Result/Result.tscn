@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dymp71iikw41"]
+[gd_scene load_steps=3 format=3 uid="uid://dymp71iikw41"]
 
 [ext_resource type="Script" path="res://Scripts/Rresult.gd" id="1_nom82"]
+[ext_resource type="Script" path="res://Scripts/score.gd" id="2_vv66s"]
 
 [node name="Result" type="Node"]
 script = ExtResource("1_nom82")
@@ -39,7 +40,7 @@ theme_override_colors/font_color = Color(0.354952, 0.326463, 0.31412, 1)
 theme_override_font_sizes/font_size = 30
 text = "Click to Title"
 
-[node name="Timer" type="Label" parent="UserInterface"]
+[node name="Score" type="Label" parent="UserInterface"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -55,3 +56,4 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Score: 100m"
+script = ExtResource("2_vv66s")
