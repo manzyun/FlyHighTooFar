@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgmovk00cwsur"]
+[gd_scene load_steps=13 format=3 uid="uid://dgmovk00cwsur"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_6dm0k"]
 [ext_resource type="PackedScene" uid="uid://u3k3tnx2jndk" path="res://Scenes/player.tscn" id="1_fhpx2"]
 [ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="2_kwqp2"]
 [ext_resource type="PackedScene" uid="uid://dv1xyubis25gg" path="res://Scenes/ObstacleManager.tscn" id="2_r5xnl"]
 [ext_resource type="PackedScene" uid="uid://n5nqgrvp0nyv" path="res://Scenes/bubble.tscn" id="2_vhebx"]
-[ext_resource type="PackedScene" uid="uid://b7c4poha88dnu" path="res://Scenes/cloud.tscn" id="5_q25xh"]
+[ext_resource type="PackedScene" path="res://Scenes/cloud.tscn" id="5_q25xh"]
 [ext_resource type="Script" path="res://Scripts/Game_Timer.gd" id="6_b3642"]
+[ext_resource type="AudioStream" uid="uid://cors0xjiqre0g" path="res://Assets/SoundEffects/fly.wav" id="7_f0314"]
+[ext_resource type="AudioStream" uid="uid://dkll3pxauvonq" path="res://Assets/SoundEffects/crash.wav" id="8_kdu0u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hoxd8"]
 size = Vector3(60, 2, 30)
@@ -73,6 +75,12 @@ script = ExtResource("6_b3642")
 [node name="ObstacleTimer" type="Timer" parent="."]
 wait_time = 2.5
 autostart = true
+
+[node name="fly" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_f0314")
+
+[node name="crash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_kdu0u")
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
