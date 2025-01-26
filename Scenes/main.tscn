@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/camera_controller.gd" id="2_kwqp2"]
 [ext_resource type="PackedScene" uid="uid://dv1xyubis25gg" path="res://Scenes/ObstacleManager.tscn" id="2_r5xnl"]
 [ext_resource type="PackedScene" uid="uid://n5nqgrvp0nyv" path="res://Scenes/bubble.tscn" id="2_vhebx"]
-[ext_resource type="PackedScene" path="res://Scenes/cloud.tscn" id="5_q25xh"]
+[ext_resource type="PackedScene" uid="uid://b7c4poha88dnu" path="res://Scenes/cloud.tscn" id="5_q25xh"]
 [ext_resource type="Script" path="res://Scripts/Game_Timer.gd" id="6_b3642"]
 [ext_resource type="AudioStream" uid="uid://cors0xjiqre0g" path="res://Assets/SoundEffects/fly.wav" id="7_f0314"]
 [ext_resource type="AudioStream" uid="uid://dkll3pxauvonq" path="res://Assets/SoundEffects/crash.wav" id="8_kdu0u"]
@@ -14,7 +14,7 @@
 size = Vector3(60, 2, 30)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2662q"]
-albedo_color = Color(0.315451, 0.6147, 0.291326, 1)
+albedo_color = Color(0.110131, 0.015957, 3.00817e-09, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4i163"]
 material = SubResource("StandardMaterial3D_2662q")

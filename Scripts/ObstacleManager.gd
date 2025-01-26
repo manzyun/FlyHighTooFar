@@ -52,8 +52,10 @@ func initialize(player_pos: Vector3):
 	#初期位置をみて移動方向を指定
 	if start_pos.x > WIDTH_MAX:
 		direction.x = -speed
+		self.rotate_y(180)
 	else:
 		direction.x = speed
+		self.rotate_y(0)
 		
 	add_child(obstacle)
 	print("plyrpos %s" %player_pos.y)
